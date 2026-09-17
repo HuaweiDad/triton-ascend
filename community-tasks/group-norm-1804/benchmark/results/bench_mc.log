@@ -1,0 +1,405 @@
+[W917 08:09:06.329107506 Module.cpp:228] Warning: AclrtGetDeviceInfo failed to get total global memory, error code is 507899. The possible cause is that the driver version is too old or does not match CANN. Fall back to aclrtGetMemInfo. Please upgrade the driver to the matching version. (function operator())
+**************************************
+     BENCHMARKING SPEED for GROUP_NORM
+**************************************
+********** Benchmark Data **********
+[
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "liger",
+    "metric_name": "speed",
+    "metric_unit": "ms",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "model_config",
+    "x_label": "model configuration",
+    "x_values": [
+      "llama_2_7b",
+      "llama_3_8b",
+      "qwen2.5_7b",
+      "qwen2.5_14b",
+      "qwen2.5_72b",
+      "deepseek_v2_lite",
+      "deepseek_v3"
+    ],
+    "y_values_50": [
+      0.22991850972175598,
+      0.22699999809265137,
+      0.19277000427246094,
+      0.27910947799682617,
+      0.43312400579452515,
+      0.12258300185203552,
+      0.3751239776611328
+    ],
+    "y_values_20": [
+      0.22917720675468445,
+      0.226350799202919,
+      0.1919270008802414,
+      0.27859780192375183,
+      0.43188339471817017,
+      0.12194380164146423,
+      0.3744469881057739
+    ],
+    "y_values_80": [
+      0.2302784025669098,
+      0.22782260179519653,
+      0.19332699477672577,
+      0.28072160482406616,
+      0.4339944124221802,
+      0.12310000509023666,
+      0.37615299224853516
+    ],
+    "timestamp": "2026-09-17 08:09:35",
+    "kernel_operation_mode": "full",
+    "extra_benchmark_config_str": "{\"bsz\": 1, \"seq_len\": 2048, \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512}",
+    "liger_version": "0.8.2-vendored"
+  },
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "torch",
+    "metric_name": "speed",
+    "metric_unit": "ms",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "model_config",
+    "x_label": "model configuration",
+    "x_values": [
+      "llama_2_7b",
+      "llama_3_8b",
+      "qwen2.5_7b",
+      "qwen2.5_14b",
+      "qwen2.5_72b",
+      "deepseek_v2_lite",
+      "deepseek_v3"
+    ],
+    "y_values_50": [
+      0.23976950347423553,
+      0.239531010389328,
+      0.21131598949432373,
+      0.3001279830932617,
+      0.46665501594543457,
+      0.1331939995288849,
+      0.4104059934616089
+    ],
+    "y_values_20": [
+      0.2387389987707138,
+      0.23826199769973755,
+      0.2094057947397232,
+      0.29890701174736023,
+      0.4659090042114258,
+      0.1324421912431717,
+      0.40990379452705383
+    ],
+    "y_values_80": [
+      0.24093499779701233,
+      0.24093399941921234,
+      0.21240419149398804,
+      0.30133798718452454,
+      0.46721601486206055,
+      0.13443098962306976,
+      0.4114552140235901
+    ],
+    "timestamp": "2026-09-17 08:09:35",
+    "kernel_operation_mode": "full",
+    "extra_benchmark_config_str": "{\"bsz\": 1, \"seq_len\": 2048, \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512}",
+    "liger_version": "0.8.2-vendored"
+  },
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "liger",
+    "metric_name": "speed",
+    "metric_unit": "ms",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "model_config",
+    "x_label": "model configuration",
+    "x_values": [
+      "llama_2_7b",
+      "llama_3_8b",
+      "qwen2.5_7b",
+      "qwen2.5_14b",
+      "qwen2.5_72b",
+      "deepseek_v2_lite",
+      "deepseek_v3"
+    ],
+    "y_values_50": [
+      0.03778199851512909,
+      0.03781750053167343,
+      0.03143949806690216,
+      0.05158950015902519,
+      0.08100400120019913,
+      0.019626500084996223,
+      0.07082699984312057
+    ],
+    "y_values_20": [
+      0.03721980005502701,
+      0.03737739846110344,
+      0.031057000160217285,
+      0.051016200333833694,
+      0.08017979562282562,
+      0.019308799877762794,
+      0.07004319876432419
+    ],
+    "y_values_80": [
+      0.03824159875512123,
+      0.03832099959254265,
+      0.03197599947452545,
+      0.05215840041637421,
+      0.08199039846658707,
+      0.019990799948573112,
+      0.07207980006933212
+    ],
+    "timestamp": "2026-09-17 08:09:35",
+    "kernel_operation_mode": "forward",
+    "extra_benchmark_config_str": "{\"bsz\": 1, \"seq_len\": 2048, \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512}",
+    "liger_version": "0.8.2-vendored"
+  },
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "torch",
+    "metric_name": "speed",
+    "metric_unit": "ms",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "model_config",
+    "x_label": "model configuration",
+    "x_values": [
+      "llama_2_7b",
+      "llama_3_8b",
+      "qwen2.5_7b",
+      "qwen2.5_14b",
+      "qwen2.5_72b",
+      "deepseek_v2_lite",
+      "deepseek_v3"
+    ],
+    "y_values_50": [
+      0.037119001150131226,
+      0.03696899861097336,
+      0.035698503255844116,
+      0.051336999982595444,
+      0.0805329978466034,
+      0.019903000444173813,
+      0.0711819976568222
+    ],
+    "y_values_20": [
+      0.03649599850177765,
+      0.036456599831581116,
+      0.03451940044760704,
+      0.05076479911804199,
+      0.07971079647541046,
+      0.019353799521923065,
+      0.07027120143175125
+    ],
+    "y_values_80": [
+      0.037411998957395554,
+      0.03753720223903656,
+      0.03650500252842903,
+      0.0522364005446434,
+      0.0812573954463005,
+      0.020294399932026863,
+      0.07195119559764862
+    ],
+    "timestamp": "2026-09-17 08:09:35",
+    "kernel_operation_mode": "forward",
+    "extra_benchmark_config_str": "{\"bsz\": 1, \"seq_len\": 2048, \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512}",
+    "liger_version": "0.8.2-vendored"
+  },
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "liger",
+    "metric_name": "speed",
+    "metric_unit": "ms",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "model_config",
+    "x_label": "model configuration",
+    "x_values": [
+      "llama_2_7b",
+      "llama_3_8b",
+      "qwen2.5_7b",
+      "qwen2.5_14b",
+      "qwen2.5_72b",
+      "deepseek_v2_lite",
+      "deepseek_v3"
+    ],
+    "y_values_50": [
+      0.0803999975323677,
+      0.08048799633979797,
+      0.06627800315618515,
+      0.09524299949407578,
+      0.14672799408435822,
+      0.04391000047326088,
+      0.12501749396324158
+    ],
+    "y_values_20": [
+      0.07989759743213654,
+      0.07992299646139145,
+      0.06601040065288544,
+      0.0947863981127739,
+      0.1457900106906891,
+      0.04352639988064766,
+      0.12473700195550919
+    ],
+    "y_values_80": [
+      0.08093979954719543,
+      0.08101080358028412,
+      0.06678439676761627,
+      0.0957770049571991,
+      0.14703679084777832,
+      0.044217001646757126,
+      0.12539100646972656
+    ],
+    "timestamp": "2026-09-17 08:09:36",
+    "kernel_operation_mode": "backward",
+    "extra_benchmark_config_str": "{\"bsz\": 1, \"seq_len\": 2048, \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512}",
+    "liger_version": "0.8.2-vendored"
+  },
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "torch",
+    "metric_name": "speed",
+    "metric_unit": "ms",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "model_config",
+    "x_label": "model configuration",
+    "x_values": [
+      "llama_2_7b",
+      "llama_3_8b",
+      "qwen2.5_7b",
+      "qwen2.5_14b",
+      "qwen2.5_72b",
+      "deepseek_v2_lite",
+      "deepseek_v3"
+    ],
+    "y_values_50": [
+      0.10946200042963028,
+      0.10957799851894379,
+      0.10291100293397903,
+      0.13420400023460388,
+      0.20535749197006226,
+      0.0638670027256012,
+      0.18176299333572388
+    ],
+    "y_values_20": [
+      0.10846199840307236,
+      0.10913220047950745,
+      0.10219799727201462,
+      0.1334351897239685,
+      0.20373660326004028,
+      0.0633850023150444,
+      0.1807679980993271
+    ],
+    "y_values_80": [
+      0.11019500344991684,
+      0.11079700291156769,
+      0.10395299643278122,
+      0.1348285973072052,
+      0.20678919553756714,
+      0.06438499689102173,
+      0.18303999304771423
+    ],
+    "timestamp": "2026-09-17 08:09:36",
+    "kernel_operation_mode": "backward",
+    "extra_benchmark_config_str": "{\"bsz\": 1, \"seq_len\": 2048, \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512}",
+    "liger_version": "0.8.2-vendored"
+  }
+]
+**************************************
+     BENCHMARKING MEMORY for GROUP_NORM
+**************************************
+********** Benchmark Data **********
+[
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "liger",
+    "metric_name": "memory",
+    "metric_unit": "MB",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "model_config",
+    "x_label": "model configuration",
+    "x_values": [
+      "llama_2_7b",
+      "llama_3_8b",
+      "qwen2.5_7b",
+      "qwen2.5_14b",
+      "qwen2.5_72b",
+      "deepseek_v2_lite",
+      "deepseek_v3"
+    ],
+    "y_values_50": [
+      96.07861328125,
+      96.07861328125,
+      86.06884765625,
+      116.09814453125,
+      176.15673828125,
+      56.03955078125,
+      156.13720703125
+    ],
+    "y_values_20": [
+      96.07861328125,
+      96.07861328125,
+      86.06884765625,
+      116.09814453125,
+      176.15673828125,
+      56.03955078125,
+      156.13720703125
+    ],
+    "y_values_80": [
+      96.07861328125,
+      96.07861328125,
+      86.06884765625,
+      116.09814453125,
+      176.15673828125,
+      56.03955078125,
+      156.13720703125
+    ],
+    "timestamp": "2026-09-17 08:09:36",
+    "kernel_operation_mode": "full",
+    "extra_benchmark_config_str": "{\"bsz\": 1, \"seq_len\": 2048, \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512}",
+    "liger_version": "0.8.2-vendored"
+  },
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "torch",
+    "metric_name": "memory",
+    "metric_unit": "MB",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "model_config",
+    "x_label": "model configuration",
+    "x_values": [
+      "llama_2_7b",
+      "llama_3_8b",
+      "qwen2.5_7b",
+      "qwen2.5_14b",
+      "qwen2.5_72b",
+      "deepseek_v2_lite",
+      "deepseek_v3"
+    ],
+    "y_values_50": [
+      96.12548828125,
+      96.12548828125,
+      86.10986328125,
+      116.15673828125,
+      176.25048828125,
+      56.06298828125,
+      156.21923828125
+    ],
+    "y_values_20": [
+      96.12548828125,
+      96.12548828125,
+      86.10986328125,
+      116.15673828125,
+      176.25048828125,
+      56.06298828125,
+      156.21923828125
+    ],
+    "y_values_80": [
+      96.12548828125,
+      96.12548828125,
+      86.10986328125,
+      116.15673828125,
+      176.25048828125,
+      56.06298828125,
+      156.21923828125
+    ],
+    "timestamp": "2026-09-17 08:09:36",
+    "kernel_operation_mode": "full",
+    "extra_benchmark_config_str": "{\"bsz\": 1, \"seq_len\": 2048, \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512}",
+    "liger_version": "0.8.2-vendored"
+  }
+]

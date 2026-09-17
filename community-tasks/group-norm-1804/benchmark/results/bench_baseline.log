@@ -1,0 +1,309 @@
+**************************************
+     BENCHMARKING SPEED for GROUP_NORM
+**************************************
+********** Benchmark Data **********
+[
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "liger",
+    "metric_name": "speed",
+    "metric_unit": "ms",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "BT",
+    "x_label": "B*T",
+    "x_values": [
+      1024,
+      2048,
+      4096,
+      8192
+    ],
+    "y_values_50": [
+      0.3720870018005371,
+      0.720317006111145,
+      1.417494535446167,
+      2.8660919666290283
+    ],
+    "y_values_20": [
+      0.37018901109695435,
+      0.7196469902992249,
+      1.4168410301208496,
+      2.862274169921875
+    ],
+    "y_values_80": [
+      0.37267500162124634,
+      0.7206060290336609,
+      1.4189929962158203,
+      2.877044916152954
+    ],
+    "timestamp": "2026-09-17 07:15:09",
+    "kernel_operation_mode": "full",
+    "extra_benchmark_config_str": "{\"hidden_size\": 4096, \"dtype\": \"torch.bfloat16\", \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512, \"bsz\": 1, \"seq_len\": 8192}",
+    "liger_version": "0.8.2-vendored"
+  },
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "torch",
+    "metric_name": "speed",
+    "metric_unit": "ms",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "BT",
+    "x_label": "B*T",
+    "x_values": [
+      1024,
+      2048,
+      4096,
+      8192
+    ],
+    "y_values_50": [
+      0.13593348860740662,
+      0.24290698766708374,
+      0.4660775065422058,
+      0.8964110016822815
+    ],
+    "y_values_20": [
+      0.13524138927459717,
+      0.2417750060558319,
+      0.4652940034866333,
+      0.8926507830619812
+    ],
+    "y_values_80": [
+      0.1365734040737152,
+      0.24414800107479095,
+      0.4678589999675751,
+      0.8993474245071411
+    ],
+    "timestamp": "2026-09-17 07:15:10",
+    "kernel_operation_mode": "full",
+    "extra_benchmark_config_str": "{\"hidden_size\": 4096, \"dtype\": \"torch.bfloat16\", \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512, \"bsz\": 1, \"seq_len\": 8192}",
+    "liger_version": "0.8.2-vendored"
+  },
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "liger",
+    "metric_name": "speed",
+    "metric_unit": "ms",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "BT",
+    "x_label": "B*T",
+    "x_values": [
+      1024,
+      2048,
+      4096,
+      8192
+    ],
+    "y_values_50": [
+      0.1225619986653328,
+      0.2267870008945465,
+      0.4287464916706085,
+      0.8371455073356628
+    ],
+    "y_values_20": [
+      0.1220719963312149,
+      0.22628919780254364,
+      0.4281671941280365,
+      0.836872398853302
+    ],
+    "y_values_80": [
+      0.12284059822559357,
+      0.22744959592819214,
+      0.42913541197776794,
+      0.837501049041748
+    ],
+    "timestamp": "2026-09-17 07:15:10",
+    "kernel_operation_mode": "forward",
+    "extra_benchmark_config_str": "{\"hidden_size\": 4096, \"dtype\": \"torch.bfloat16\", \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512, \"bsz\": 1, \"seq_len\": 8192}",
+    "liger_version": "0.8.2-vendored"
+  },
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "torch",
+    "metric_name": "speed",
+    "metric_unit": "ms",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "BT",
+    "x_label": "B*T",
+    "x_values": [
+      1024,
+      2048,
+      4096,
+      8192
+    ],
+    "y_values_50": [
+      0.022608499974012375,
+      0.041023001074790955,
+      0.08062899857759476,
+      0.14898499846458435
+    ],
+    "y_values_20": [
+      0.02199999988079071,
+      0.04041000083088875,
+      0.07952559739351273,
+      0.14807100594043732
+    ],
+    "y_values_80": [
+      0.023024000227451324,
+      0.0415504015982151,
+      0.0815361961722374,
+      0.14992819726467133
+    ],
+    "timestamp": "2026-09-17 07:15:10",
+    "kernel_operation_mode": "forward",
+    "extra_benchmark_config_str": "{\"hidden_size\": 4096, \"dtype\": \"torch.bfloat16\", \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512, \"bsz\": 1, \"seq_len\": 8192}",
+    "liger_version": "0.8.2-vendored"
+  },
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "liger",
+    "metric_name": "speed",
+    "metric_unit": "ms",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "BT",
+    "x_label": "B*T",
+    "x_values": [
+      1024,
+      2048,
+      4096,
+      8192
+    ],
+    "y_values_50": [
+      0.22363099455833435,
+      0.4298590123653412,
+      0.849120020866394,
+      1.671713948249817
+    ],
+    "y_values_20": [
+      0.22304460406303406,
+      0.42900198698043823,
+      0.8477563858032227,
+      1.6692763566970825
+    ],
+    "y_values_80": [
+      0.2242203950881958,
+      0.4309326112270355,
+      0.8514861464500427,
+      1.6740615367889404
+    ],
+    "timestamp": "2026-09-17 07:15:10",
+    "kernel_operation_mode": "backward",
+    "extra_benchmark_config_str": "{\"hidden_size\": 4096, \"dtype\": \"torch.bfloat16\", \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512, \"bsz\": 1, \"seq_len\": 8192}",
+    "liger_version": "0.8.2-vendored"
+  },
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "torch",
+    "metric_name": "speed",
+    "metric_unit": "ms",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "BT",
+    "x_label": "B*T",
+    "x_values": [
+      1024,
+      2048,
+      4096,
+      8192
+    ],
+    "y_values_50": [
+      0.06667099893093109,
+      0.11221499741077423,
+      0.20458349585533142,
+      0.3574405014514923
+    ],
+    "y_values_20": [
+      0.06633559614419937,
+      0.11110579967498779,
+      0.20340919494628906,
+      0.3562734127044678
+    ],
+    "y_values_80": [
+      0.06714019924402237,
+      0.11304140090942383,
+      0.2057981938123703,
+      0.359770804643631
+    ],
+    "timestamp": "2026-09-17 07:15:10",
+    "kernel_operation_mode": "backward",
+    "extra_benchmark_config_str": "{\"hidden_size\": 4096, \"dtype\": \"torch.bfloat16\", \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512, \"bsz\": 1, \"seq_len\": 8192}",
+    "liger_version": "0.8.2-vendored"
+  }
+]
+**************************************
+     BENCHMARKING MEMORY for GROUP_NORM
+**************************************
+********** Benchmark Data **********
+[
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "liger",
+    "metric_name": "memory",
+    "metric_unit": "MB",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "BT",
+    "x_label": "B*T",
+    "x_values": [
+      1024,
+      2048,
+      4096,
+      8192
+    ],
+    "y_values_50": [
+      56.09423828125,
+      96.10986328125,
+      176.14111328125,
+      336.20361328125
+    ],
+    "y_values_20": [
+      56.09423828125,
+      96.10986328125,
+      176.14111328125,
+      336.20361328125
+    ],
+    "y_values_80": [
+      56.09423828125,
+      96.10986328125,
+      176.14111328125,
+      336.20361328125
+    ],
+    "timestamp": "2026-09-17 07:15:10",
+    "kernel_operation_mode": "full",
+    "extra_benchmark_config_str": "{\"hidden_size\": 4096, \"dtype\": \"torch.bfloat16\", \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512, \"bsz\": 1, \"seq_len\": 8192}",
+    "liger_version": "0.8.2-vendored"
+  },
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "torch",
+    "metric_name": "memory",
+    "metric_unit": "MB",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "BT",
+    "x_label": "B*T",
+    "x_values": [
+      1024,
+      2048,
+      4096,
+      8192
+    ],
+    "y_values_50": [
+      56.08642578125,
+      96.12548828125,
+      176.20361328125,
+      336.35986328125
+    ],
+    "y_values_20": [
+      56.08642578125,
+      96.12548828125,
+      176.20361328125,
+      336.35986328125
+    ],
+    "y_values_80": [
+      56.08642578125,
+      96.12548828125,
+      176.20361328125,
+      336.35986328125
+    ],
+    "timestamp": "2026-09-17 07:15:10",
+    "kernel_operation_mode": "full",
+    "extra_benchmark_config_str": "{\"hidden_size\": 4096, \"dtype\": \"torch.bfloat16\", \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512, \"bsz\": 1, \"seq_len\": 8192}",
+    "liger_version": "0.8.2-vendored"
+  }
+]
+EXIT=0

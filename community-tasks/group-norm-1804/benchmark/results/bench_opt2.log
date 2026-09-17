@@ -1,0 +1,310 @@
+**************************************
+     BENCHMARKING SPEED for GROUP_NORM
+**************************************
+[WARNING] AutoBlockify disabled for kernel '_group_norm_bwd_2d'. Unsafe ops: atomic operations. Enabling may cause correctness issues. To force enable: set has_auto_blockify_blacklist_op=False.
+********** Benchmark Data **********
+[
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "liger",
+    "metric_name": "speed",
+    "metric_unit": "ms",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "BT",
+    "x_label": "B*T",
+    "x_values": [
+      1024,
+      2048,
+      4096,
+      8192
+    ],
+    "y_values_50": [
+      0.21140700578689575,
+      0.2752915024757385,
+      0.5381555557250977,
+      1.0513930320739746
+    ],
+    "y_values_20": [
+      0.205514594912529,
+      0.27466440200805664,
+      0.5363010168075562,
+      1.049528956413269
+    ],
+    "y_values_80": [
+      0.21546539664268494,
+      0.2769136130809784,
+      0.5396513938903809,
+      1.0550949573516846
+    ],
+    "timestamp": "2026-09-17 07:48:18",
+    "kernel_operation_mode": "full",
+    "extra_benchmark_config_str": "{\"hidden_size\": 4096, \"dtype\": \"torch.bfloat16\", \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512, \"bsz\": 1, \"seq_len\": 8192}",
+    "liger_version": "0.8.2-vendored"
+  },
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "torch",
+    "metric_name": "speed",
+    "metric_unit": "ms",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "BT",
+    "x_label": "B*T",
+    "x_values": [
+      1024,
+      2048,
+      4096,
+      8192
+    ],
+    "y_values_50": [
+      0.13616250455379486,
+      0.24534949660301208,
+      0.4664745032787323,
+      0.8972030282020569
+    ],
+    "y_values_20": [
+      0.13527759909629822,
+      0.24405400454998016,
+      0.46487799286842346,
+      0.895393967628479
+    ],
+    "y_values_80": [
+      0.13723020255565643,
+      0.24666999280452728,
+      0.4674080014228821,
+      0.8985267877578735
+    ],
+    "timestamp": "2026-09-17 07:48:18",
+    "kernel_operation_mode": "full",
+    "extra_benchmark_config_str": "{\"hidden_size\": 4096, \"dtype\": \"torch.bfloat16\", \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512, \"bsz\": 1, \"seq_len\": 8192}",
+    "liger_version": "0.8.2-vendored"
+  },
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "liger",
+    "metric_name": "speed",
+    "metric_unit": "ms",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "BT",
+    "x_label": "B*T",
+    "x_values": [
+      1024,
+      2048,
+      4096,
+      8192
+    ],
+    "y_values_50": [
+      0.022312000393867493,
+      0.043407998979091644,
+      0.0836465060710907,
+      0.1533384919166565
+    ],
+    "y_values_20": [
+      0.02193260006606579,
+      0.04276860132813454,
+      0.0822606012225151,
+      0.15151339769363403
+    ],
+    "y_values_80": [
+      0.022992201149463654,
+      0.044368598610162735,
+      0.08580520004034042,
+      0.15560460090637207
+    ],
+    "timestamp": "2026-09-17 07:48:18",
+    "kernel_operation_mode": "forward",
+    "extra_benchmark_config_str": "{\"hidden_size\": 4096, \"dtype\": \"torch.bfloat16\", \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512, \"bsz\": 1, \"seq_len\": 8192}",
+    "liger_version": "0.8.2-vendored"
+  },
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "torch",
+    "metric_name": "speed",
+    "metric_unit": "ms",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "BT",
+    "x_label": "B*T",
+    "x_values": [
+      1024,
+      2048,
+      4096,
+      8192
+    ],
+    "y_values_50": [
+      0.023064501583576202,
+      0.04226649925112724,
+      0.0806490033864975,
+      0.15506699681282043
+    ],
+    "y_values_20": [
+      0.022319599986076355,
+      0.041822999715805054,
+      0.07956879585981369,
+      0.15379899740219116
+    ],
+    "y_values_80": [
+      0.023653801530599594,
+      0.04306800290942192,
+      0.08196079730987549,
+      0.15620559453964233
+    ],
+    "timestamp": "2026-09-17 07:48:18",
+    "kernel_operation_mode": "forward",
+    "extra_benchmark_config_str": "{\"hidden_size\": 4096, \"dtype\": \"torch.bfloat16\", \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512, \"bsz\": 1, \"seq_len\": 8192}",
+    "liger_version": "0.8.2-vendored"
+  },
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "liger",
+    "metric_name": "speed",
+    "metric_unit": "ms",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "BT",
+    "x_label": "B*T",
+    "x_values": [
+      1024,
+      2048,
+      4096,
+      8192
+    ],
+    "y_values_50": [
+      0.07388399541378021,
+      0.135857492685318,
+      0.25749099254608154,
+      0.5021895170211792
+    ],
+    "y_values_20": [
+      0.07337719947099686,
+      0.1354449987411499,
+      0.25693279504776,
+      0.5000516176223755
+    ],
+    "y_values_80": [
+      0.07456959784030914,
+      0.13623599708080292,
+      0.2582871913909912,
+      0.5031492114067078
+    ],
+    "timestamp": "2026-09-17 07:48:19",
+    "kernel_operation_mode": "backward",
+    "extra_benchmark_config_str": "{\"hidden_size\": 4096, \"dtype\": \"torch.bfloat16\", \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512, \"bsz\": 1, \"seq_len\": 8192}",
+    "liger_version": "0.8.2-vendored"
+  },
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "torch",
+    "metric_name": "speed",
+    "metric_unit": "ms",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "BT",
+    "x_label": "B*T",
+    "x_values": [
+      1024,
+      2048,
+      4096,
+      8192
+    ],
+    "y_values_50": [
+      0.06755299866199493,
+      0.11378400027751923,
+      0.20509250462055206,
+      0.36015498638153076
+    ],
+    "y_values_20": [
+      0.06693799793720245,
+      0.1129755973815918,
+      0.20376360416412354,
+      0.35885798931121826
+    ],
+    "y_values_80": [
+      0.06805200129747391,
+      0.1148499995470047,
+      0.20666919648647308,
+      0.36517801880836487
+    ],
+    "timestamp": "2026-09-17 07:48:19",
+    "kernel_operation_mode": "backward",
+    "extra_benchmark_config_str": "{\"hidden_size\": 4096, \"dtype\": \"torch.bfloat16\", \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512, \"bsz\": 1, \"seq_len\": 8192}",
+    "liger_version": "0.8.2-vendored"
+  }
+]
+**************************************
+     BENCHMARKING MEMORY for GROUP_NORM
+**************************************
+********** Benchmark Data **********
+[
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "liger",
+    "metric_name": "memory",
+    "metric_unit": "MB",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "BT",
+    "x_label": "B*T",
+    "x_values": [
+      1024,
+      2048,
+      4096,
+      8192
+    ],
+    "y_values_50": [
+      56.09423828125,
+      96.10986328125,
+      176.14111328125,
+      336.20361328125
+    ],
+    "y_values_20": [
+      56.09423828125,
+      96.10986328125,
+      176.14111328125,
+      336.20361328125
+    ],
+    "y_values_80": [
+      56.09423828125,
+      96.10986328125,
+      176.14111328125,
+      336.20361328125
+    ],
+    "timestamp": "2026-09-17 07:48:19",
+    "kernel_operation_mode": "full",
+    "extra_benchmark_config_str": "{\"hidden_size\": 4096, \"dtype\": \"torch.bfloat16\", \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512, \"bsz\": 1, \"seq_len\": 8192}",
+    "liger_version": "0.8.2-vendored"
+  },
+  {
+    "kernel_name": "group_norm",
+    "kernel_provider": "torch",
+    "metric_name": "memory",
+    "metric_unit": "MB",
+    "gpu_name": "Ascend950PR_9579",
+    "x_name": "BT",
+    "x_label": "B*T",
+    "x_values": [
+      1024,
+      2048,
+      4096,
+      8192
+    ],
+    "y_values_50": [
+      56.08642578125,
+      96.12548828125,
+      176.20361328125,
+      336.35986328125
+    ],
+    "y_values_20": [
+      56.08642578125,
+      96.12548828125,
+      176.20361328125,
+      336.35986328125
+    ],
+    "y_values_80": [
+      56.08642578125,
+      96.12548828125,
+      176.20361328125,
+      336.35986328125
+    ],
+    "timestamp": "2026-09-17 07:48:19",
+    "kernel_operation_mode": "full",
+    "extra_benchmark_config_str": "{\"hidden_size\": 4096, \"dtype\": \"torch.bfloat16\", \"channels_per_group\": 4, \"eps\": 1e-06, \"H\": 512, \"bsz\": 1, \"seq_len\": 8192}",
+    "liger_version": "0.8.2-vendored"
+  }
+]
+EXIT=0
