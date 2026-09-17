@@ -43,7 +43,7 @@ pytest tests/ops/test_wall_attn.py
 ## 验证结果
 
 - Ascend950PR：`pytest tests/ops/test_wall_attn.py` → **31 passed, 0 failed, 0 error**
-  （报告：[docs/test_report_950pr.txt](docs/test_report_950pr.txt)）
+  （验收测试报告（含 A2/A3/950 平台矩阵）：[docs/test_report.md](docs/test_report.md)）
 - 环境注意：950PR (9579) 需 torch_npu ≥ 2.9.0.post8（2.9.0 初版不识别该 SoC）；
   triton-ascend 3.2.2 需从 ascend 源安装（`--extra-index-url=https://mirrors.huaweicloud.com/ascend/repos/pypi`）；
   kernel 首次编译需要 python3-devel（Python.h）。
