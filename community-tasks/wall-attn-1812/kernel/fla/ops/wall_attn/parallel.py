@@ -19,6 +19,7 @@
 import os
 
 import torch
+import torch.nn.functional as F
 import triton
 import triton.language as tl
 
@@ -54,7 +55,7 @@ WALL_BWD_AUTOTUNE_CONFIGS = [
     for BT in (64, 128)
     for BS in (32, 64)
     for nw in (2, 4)
-    for ns in (2,)
+    for ns in (1,)  # NPU: 单级流水，规避反向 kernel UB 溢出（950PR UB 253952B）
 ]
 
 
@@ -810,7 +811,8 @@ def parallel_wall_attn_bwd(
     T_BUCKET = 1 if is_varlen else triton.next_power_of_2(T)
     extra = {}
     if is_varlen:
-        BT = 128
+        # NPU: BT 降为 64（配合 num_stages=1），规避 bwd_dkv UB 溢出
+        BT = 64
         if check_shared_mem('hopper', q.device.index):
             BS, num_warps = min(64, max(16, triton.next_power_of_2(T))), 8
         elif check_shared_mem('ampere', q.device.index):
@@ -821,7 +823,7 @@ def parallel_wall_attn_bwd(
             chunk_indices = prepare_chunk_indices(cu_seqlens, BT)
         NT = len(chunk_indices)
         grid = (NV, NT, B * HQ)
-        extra = dict(BT=BT, BS=BS, num_warps=num_warps, num_stages=2)
+        extra = dict(BT=BT, BS=BS, num_warps=num_warps, num_stages=1)
     else:
         def grid(meta):
             return (NV, triton.cdiv(T, meta['BT']), B * HQ)
@@ -1112,6 +1114,20 @@ def parallel_wall_attn(
         raise ValueError("`cu_seqlens` (varlen) requires batch size 1")
     if sink_bias is not None and sink_bias.shape != (q.shape[2],):
         raise ValueError(f"`sink_bias` must be [HQ]; got {sink_bias.shape}")
-    return WallParallelAttentionFunction.apply(
+    # NPU: 头维非 2 的幂时，kernel 内掩码 load 会触发 triton-ascend 3.2.2 后端
+    # 编译缺陷（vector.transfer_write permutation_map 秩不匹配 / transform op 失败）。
+    # host 侧将 K/V 零填充至 2 的幂（>=16），使 K==BK、V==NV*BV，掩码恒真被折叠；
+    # 零填充对打分与输出无数学影响，梯度由 autograd 经 pad/slice 反向自动还原。
+    K, V = k.shape[-1], v.shape[-1]
+    pad_k = max(16, triton.next_power_of_2(K)) - K
+    pad_v = max(16, triton.next_power_of_2(V)) - V
+    if pad_k:
+        q = F.pad(q, (0, pad_k))
+        k = F.pad(k, (0, pad_k))
+        g = F.pad(g, (0, pad_k))
+    if pad_v:
+        v = F.pad(v, (0, pad_v))
+    o = WallParallelAttentionFunction.apply(
         q, k, v, g, sink_bias, scale, window_size, cu_seqlens, g_scalar, None
     )
+    return o[..., :V] if pad_v else o

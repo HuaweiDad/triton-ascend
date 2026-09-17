@@ -13,6 +13,7 @@
 # ascend_compile_kwargs(); kernel body and cache builder are unchanged.
 
 import torch
+import torch.nn.functional as F
 import triton
 import triton.language as tl
 
@@ -197,6 +198,20 @@ def parallel_wall_attn_decode(
     if HQ % H != 0:
         raise ValueError(f"HQ ({HQ}) must be divisible by H ({H})")
 
+    # NPU: 同 parallel_wall_attn 的头维零填充规避（消除掩码 load 触发的后端编译缺陷）
+    V_orig = V
+    pad_k = max(16, triton.next_power_of_2(K)) - K
+    pad_v = max(16, triton.next_power_of_2(V)) - V
+    if pad_k:
+        q = F.pad(q, (0, pad_k))
+        p_curr = F.pad(p_curr, (0, pad_k))
+        k_tilde = F.pad(k_tilde, (0, pad_k))
+        r_cache = F.pad(r_cache, (0, pad_k))
+        K += pad_k
+    if pad_v:
+        v = F.pad(v, (0, pad_v))
+        V += pad_v
+
     for t in (q, v, p_curr, k_tilde, r_cache):
         if t.stride(-1) != 1:
             raise ValueError("decode tensors must be contiguous in the last (K or V) dim")
@@ -247,7 +262,7 @@ def parallel_wall_attn_decode(
         C=C,
         **ascend_compile_kwargs(),
     )
-    return o, lse
+    return o[..., :V_orig], lse
 
 
 def build_wall_kv_cache(

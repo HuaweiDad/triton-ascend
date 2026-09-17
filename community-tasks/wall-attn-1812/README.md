@@ -32,6 +32,19 @@ pytest tests/ops/test_wall_attn.py
 1. 移除 `fla.ops.backends.dispatch`（GPU 后端路由）与 einops 依赖（GQA 归约改用原生 torch）。
 2. `check_shared_mem` 在 NPU 上恒返回 False → 走保守 tile 路径（BV≤64、BS≤32）；
    函数名/签名与上游一致，上游测试的 monkeypatch 点不受影响。
-3. autotune 空间精简（num_warps {2,4} × num_stages {2}），规避 NPU 上
-   多配置 × IEEE fp32 dot 编译堆积（对应验收项 507014/507034 超时对策）。
+3. autotune 空间精简（num_warps {2,4}；前向 num_stages {2}、反向 {1}），varlen 反向 BT=64，
+   规避 NPU 编译堆积与 UB 溢出（对应验收项 507014/507034 超时对策；950PR UB 253952B）。
 4. kernel 启动附带 `ascend_compile_kwargs()`（关闭 auto-multi-buffer，控制 UB 占用）。
+5. host 侧头维零填充：K/V 非 2 的幂时 kernel 内掩码 load 会触发 triton-ascend 3.2.2
+   后端编译缺陷（`vector.transfer_write` permutation_map 秩不匹配 / transform op 失败），
+   故在公开接口内将 q/k/v/g（decode 含 p_curr/k_tilde/r_cache）的 K/V 维零填充至 2 的幂
+   （≥16），使掩码恒真被折叠；数学上无影响，梯度由 autograd 经 pad/slice 自动还原。
+
+## 验证结果
+
+- Ascend950PR：`pytest tests/ops/test_wall_attn.py` → **31 passed, 0 failed, 0 error**
+  （报告：[docs/test_report_950pr.txt](docs/test_report_950pr.txt)）
+- 环境注意：950PR (9579) 需 torch_npu ≥ 2.9.0.post8（2.9.0 初版不识别该 SoC）；
+  triton-ascend 3.2.2 需从 ascend 源安装（`--extra-index-url=https://mirrors.huaweicloud.com/ascend/repos/pypi`）；
+  kernel 首次编译需要 python3-devel（Python.h）。
+- A2 / A3 平台验证待补充（当前仅 950 机器可用）。

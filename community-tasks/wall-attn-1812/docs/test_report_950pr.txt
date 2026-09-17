@@ -1,0 +1,54 @@
+# Wall Attention Ascend 适配 — 验收测试报告（Ascend 950PR）
+#
+# 平台: Ascend950PR (9579), board A310-50-C00MM304A1, HBM 128G
+# 软件: CANN 9.1.0 / torch 2.9.0+cpu / torch_npu 2.9.0.post8 / triton-ascend 3.2.2 (triton 3.2.0)
+# 命令: cd community-tasks/wall-attn-1812 && python3 -m pytest tests/ops/test_wall_attn.py -v --tb=short
+# 结果: 31 passed, 0 failed, 0 error (527s)
+# 说明: tests/ops/test_wall_attn.py 与上游 fla-org/flash-linear-attention 逐字节一致，断言与容差未改。
+
+============================= test session starts ==============================
+platform linux -- Python 3.11.6, pytest-8.3.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /root/wall-attn-1812
+plugins: xdist-3.6.1
+collecting ... collected 31 items
+
+tests/ops/test_wall_attn.py::test_parallel_matches_reference[None-B1-T48-H2-HQ4-K32-V16] PASSED [  3%]
+tests/ops/test_wall_attn.py::test_parallel_matches_reference[None-B2-T31-H1-HQ1-K24-V8] PASSED [  6%]
+tests/ops/test_wall_attn.py::test_parallel_matches_reference[None-B1-T31-H1-HQ2-K32-V128] PASSED [  9%]
+tests/ops/test_wall_attn.py::test_parallel_matches_reference[8-B1-T48-H2-HQ4-K32-V16] PASSED [ 12%]
+tests/ops/test_wall_attn.py::test_parallel_matches_reference[8-B2-T31-H1-HQ1-K24-V8] PASSED [ 16%]
+tests/ops/test_wall_attn.py::test_parallel_matches_reference[8-B1-T31-H1-HQ2-K32-V128] PASSED [ 19%]
+tests/ops/test_wall_attn.py::test_parallel_gqa_matches_reference PASSED  [ 22%]
+tests/ops/test_wall_attn.py::test_parallel_varlen_matches_reference PASSED [ 25%]
+tests/ops/test_wall_attn.py::test_parallel_sink_bias_matches_reference PASSED [ 29%]
+tests/ops/test_wall_attn.py::test_parallel_aggressive_gates_long_seq PASSED [ 32%]
+tests/ops/test_wall_attn.py::test_backward_matches_eager_reference[B1-T24-H2-HQ4-K16-V12] PASSED [ 35%]
+tests/ops/test_wall_attn.py::test_backward_matches_eager_reference[B1-T64-H2-HQ2-K64-V128] PASSED [ 38%]
+tests/ops/test_wall_attn.py::test_backward_value_split_matches_single_tile PASSED [ 41%]
+tests/ops/test_wall_attn.py::test_dg_nonzero_after_backward PASSED       [ 45%]
+tests/ops/test_wall_attn.py::test_g_gradient_matches_finite_differences PASSED [ 48%]
+tests/ops/test_wall_attn.py::test_scalar_gate_matches_reference[B1-T48-H2-HQ4-K32-V16] PASSED [ 51%]
+tests/ops/test_wall_attn.py::test_scalar_gate_matches_reference[B2-T31-H1-HQ1-K24-V8] PASSED [ 54%]
+tests/ops/test_wall_attn.py::test_scalar_gate_gradient_finite_differences PASSED [ 58%]
+tests/ops/test_wall_attn.py::test_decode_matches_training_forward[B1-T256-H4-HQ4-K64-V64-C64-dtype0] PASSED [ 61%]
+tests/ops/test_wall_attn.py::test_decode_matches_training_forward[B1-T256-H4-HQ4-K64-V64-C64-dtype1] PASSED [ 64%]
+tests/ops/test_wall_attn.py::test_decode_matches_training_forward[B1-T256-H2-HQ8-K64-V64-C64-dtype0] PASSED [ 67%]
+tests/ops/test_wall_attn.py::test_decode_matches_training_forward[B1-T256-H2-HQ8-K64-V64-C64-dtype1] PASSED [ 70%]
+tests/ops/test_wall_attn.py::test_decode_matches_training_forward[B2-T128-H1-HQ2-K32-V32-C32-dtype0] PASSED [ 74%]
+tests/ops/test_wall_attn.py::test_decode_matches_training_forward[B2-T128-H1-HQ2-K32-V32-C32-dtype1] PASSED [ 77%]
+tests/ops/test_wall_attn.py::test_decode_matches_training_forward[B1-T128-H1-HQ2-K32-V320-C32-dtype0] PASSED [ 80%]
+tests/ops/test_wall_attn.py::test_decode_matches_training_forward[B1-T128-H1-HQ2-K32-V320-C32-dtype1] PASSED [ 83%]
+tests/ops/test_wall_attn.py::test_decode_matches_training_forward_long PASSED [ 87%]
+tests/ops/test_wall_attn.py::test_decode_with_scalar_gate PASSED         [ 90%]
+tests/ops/test_wall_attn.py::test_decode_streaming_matches_full_forward[dtype0] PASSED [ 93%]
+tests/ops/test_wall_attn.py::test_decode_streaming_matches_full_forward[dtype1] PASSED [ 96%]
+tests/ops/test_wall_attn.py::test_decode_cache_layout_shapes PASSED      [100%]
+
+=============================== warnings summary ===============================
+tests/ops/test_wall_attn.py:90
+  /root/wall-attn-1812/tests/ops/test_wall_attn.py:90: PytestUnknownMarkWarning: Unknown pytest.mark.smoke - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.smoke
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================== 31 passed, 1 warning in 527.44s (0:08:47) ===================
